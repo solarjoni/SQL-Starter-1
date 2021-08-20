@@ -13,24 +13,45 @@
 .schema Students
 
 /*** WRITE YOUR QUERIES BELOW ***/
+.print ''
+.print New Student:
 INSERT INTO Students(FirstName, LastName)
 VALUES("Bobby", "Di'angelo");
+SELECT * FROM Students
+WHERE FirstName="Bobby"AND LastName="Di'angelo";
+
+.print ''
+.print New Student, New Exam:
 UPDATE Students
-SET Grade = 100    
+SET Grade = 100, HonorRoll = 1    
 WHERE 
     FirstName = "Bobby" AND LastName = "Di'angelo";
+SELECT * FROM Students
+WHERE FirstName="Bobby"AND LastName="Di'angelo";
+
+.print ''
+.print Farewell:
 DELETE FROM Students
-WHERE ID = 9;
+WHERE ID=9;
+SELECT FirstName, LastName, 
+CASE
+WHEN FirstName || LastName = "BobbyDi'angelo" THEN 'Record Deleted'
+END
+FROM Students
+WHERE FirstName='Bobby' AND LastName="Di'angelo";
+
+.print ''
+.print Honor Roll:
 SELECT * FROM Students
 WHERE HonorRoll = 1;
 
+.print ''
+.print Club Advisor:
 create table Members (
   ID INTEGER not null primary key autoincrement,
   FirstName TEXT not null,
   LastName TEXT not null,
-  Grade INTEGER not null,
+  GradeLevel INTEGER not null,
   Competitions INTEGER
 );
-
-/* SELECT * FROM Students; */
-
+.schema Members
